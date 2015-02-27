@@ -1,0 +1,72 @@
+fieldset {
+    margin: 1.5em 0 0 0;
+    padding: 0;
+}
+legend {
+    margin-left: 1em;
+    color: #545351;
+    font-weight: bold;
+}
+fieldset ol {
+    padding: 1em 1em 0 1em;
+    list-style: none;
+}
+fieldset li {
+    padding-bottom: 1em;
+}
+fieldset.submit {
+    border-style: none;
+}
+
+.labelField {
+    width: 100px;
+    display: inline-table;
+}
+
+fieldset li {
+    float: left;
+    clear: left;
+    padding-bottom: 1em;
+}
+fieldset {
+    float: left;
+    clear: both;
+    width: 50%;
+    margin: 0 0 1.5em 0;
+    padding: 0;
+    border: 1px solid #BFBAB0;
+    background: rgba(10, 13, 26, 0.11);
+}
+
+fieldset.submit{
+    border:none;
+    background: none;
+}
+
+input[type=submit] {
+    padding: 0 18px;
+    height: 29px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #527881;
+    text-shadow: 0 1px #e3f1f1;
+    background: #acbdc7;
+    border: 1px solid;
+    border-color: #b4ccce #b3c0c8 #9eb9c2;
+    border-radius: 16px;
+    border-style: none;
+    outline: 0;
+    @include box-sizing(content-box); // Firefox sets this to border-box by default
+    @include linear-gradient(top, #edf5f8, #cde5ef);
+    @include box-shadow(inset 0 1px white, 0 1px 2px rgba(black, .15));
+}
+form[type=checkbox] + label {
+    float:none;
+    display: inline-block;
+    width: 1em;
+    margin-right: 1em;
+}
+
+.error {
+    color: #ff0000;
+}

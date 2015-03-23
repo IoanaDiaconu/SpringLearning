@@ -139,7 +139,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
+            <version>1.10.8</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -169,9 +169,8 @@
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
-            <artifactId>powermock-classloading-objenesis</artifactId>
-            <version>${powermock.version}</version>
-            <scope>test</scope>
+            <artifactId>powermock-core</artifactId>
+            <version>1.6.1</version>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
@@ -202,6 +201,17 @@
             <version>1.6.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-test-easymock-junit4</artifactId>
+            <version>1.6.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>3.1</version>
+        </dependency>
     </dependencies>
 
 
@@ -212,7 +222,24 @@
         </repository>
     </repositories>
 
+
     <build>
+        <resources>
+            <!--<resource>
+                <filtering>true</filtering>
+                <directory>src/test/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>-->
+            <resource>
+                <directory>src/main/webapp/WEB-INF</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
         <finalName>Project</finalName>
         <plugins>
             <plugin>
@@ -267,5 +294,6 @@
                 </configuration>
             </plugin>
         </plugins>
+
     </build>
 </project>

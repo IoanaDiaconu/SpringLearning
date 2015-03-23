@@ -10,7 +10,6 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -107,7 +106,8 @@ public class CoursesController {
     @ResponseBody
     String listOfAvailableCourses(){
         JSONArray courses =  new JSONArray();
-        for(Course course : courseService.listCourse()){
+        List<Course> availabaleCourses = courseService.listCourse();
+        for(Course course : availabaleCourses){
             JSONObject courseJSON =  new JSONObject();
             courseJSON.put("course_id",course.getId());
             courseJSON.put("course_name",course.getCourse_name());

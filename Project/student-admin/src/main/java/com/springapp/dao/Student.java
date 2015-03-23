@@ -43,6 +43,16 @@ public class Student {
     @JoinColumn(name = "course_id")
     private Course course;
 
+
+    public Student(String first_name, String last_name, String age) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.age = age;
+    }
+
+    public Student() {
+    }
+
     public Course getCourse() {
         return course;
     }

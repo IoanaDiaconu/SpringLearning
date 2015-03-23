@@ -14,8 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,11 +22,9 @@ import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -39,7 +35,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration({"file:student-admin/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml", "file:student-admin/src/main/webapp/WEB-INF/servlet-context.xml"})
+//@ContextConfiguration({"file:student-admin/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml", "file:student-admin/src/main/webapp/WEB-INF/servlet-context.xml"})
+@ContextConfiguration(locations = {"classpath:**/mvc-dispatcher-servlet.xml","classpath:**/security-config.xml","classpath:**/servlet-context.xml"})
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
 public class DBTests extends AbstractTransactionalJUnit4SpringContextTests {
@@ -178,8 +175,8 @@ public class DBTests extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Test
     public void testDeleteStudentsFromCourse() {
-        Course course = courseService.getCourse(2);
-        courseService.removeStudentFromCourse(47, course);
+        Course course = courseService.getCourse(19);
+        courseService.removeStudentFromCourse(51, course);
         courseService.listCourse();
         List<Course> courses = courseService.listCourse();
 

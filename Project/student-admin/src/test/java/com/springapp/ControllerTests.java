@@ -44,7 +44,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
-@ContextConfiguration({"file:student-admin/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml", "file:student-admin/src/main/webapp/WEB-INF/security-config.xml", "file:student-admin/src/main/webapp/WEB-INF/servlet-context.xml"})
+//@ContextConfiguration({"file:student-admin/src/test/resources/mvc-dispatcher-servlet.xml", "file:student-admin/src/test/resources/security-config.xml", "file:student-admin/src/test/resources/servlet-context.xml"})
+@ContextConfiguration(locations = {"classpath:**/mvc-dispatcher-servlet.xml","classpath:**/security-config.xml","classpath:**/servlet-context.xml"})
 @TestExecutionListeners(listeners = {ServletTestExecutionListener.class,
         DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,

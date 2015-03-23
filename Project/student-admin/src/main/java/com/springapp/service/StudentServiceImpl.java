@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by ioana.diaconu on 12/18/2014.
@@ -17,6 +18,9 @@ import java.util.List;
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class StudentServiceImpl  implements StudentService{
+    // global static instance for group students
+    private static Pattern patternForName = Pattern.compile("^[\\p{L} .'-]+$");
+
     @Autowired
     StudentDAO studentDAO;
     @Override
@@ -41,7 +45,14 @@ public class StudentServiceImpl  implements StudentService{
 
     @Override
     public void addStudent(Student student) {
-       studentDAO.addStudent(student);
+       String studentName = student.getFirst_name()+" "+student.getLast_name(); 
+       if(checkIfNameValid(studentName))
+            studentDAO.addStudent(student);
+    }
+
+    private boolean checkIfNameValid(String studentName) {
+        Matcher matcher = patternForName.matcher(studentName);
+        return matcher.matches();
     }
 
     @Override

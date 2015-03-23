@@ -13,7 +13,7 @@ public interface CourseService {
 
     public void updateCourse(Course Course);
 
-    public List<Course> listCourse();
+    public List listCourse();
 
     public void deleteCourse(int id);
 
@@ -24,4 +24,10 @@ public interface CourseService {
     public Course getCourseByName(String courseName);
 
     public JSONObject generateCourseInfo(int id);
+
+    public String generateAbout(String info, List<String> authors);
+
+    public boolean createLogFile(String path);
+
+    public String createHeaderLog();
 }

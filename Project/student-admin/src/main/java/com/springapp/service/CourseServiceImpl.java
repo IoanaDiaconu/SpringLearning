@@ -1,6 +1,5 @@
 package com.springapp.service;
 
-import com.springapp.service.CourseService;
 import com.springapp.dao.Course;
 import com.springapp.dao.CourseDAO;
 import org.json.JSONObject;
@@ -19,8 +18,12 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     CourseDAO courseDAO;
 
-    // global instance for group students
-    // global static instance for group students
+    // global instance
+    AboutInfo info;
+
+    public CourseServiceImpl(){
+        info = new AboutInfo();
+    }
 
     @Override
     public Course getCourse(int id) {
@@ -60,13 +63,30 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public JSONObject generateCourseInfo(int id) {
         JSONObject jsonObject = new JSONObject();
-        final long time =  TimeInfo.generateTimeInfo();
+        final long time =  AboutInfo.generateTimeInfo();
         Course course = getCourse(id);
         jsonObject.put("time", time);
-        jsonObject.put("course",course.getStudents());
+        jsonObject.put("course",course);
         return jsonObject;
 
     }
 
+    @Override
+    public String generateAbout(String info, List<String> authors) {
+        return new AboutInfo().logInfo(info, authors);
+    }
+
+    @Override
+    public boolean createLogFile(String path) {
+        AboutInfo info = new AboutInfo();
+        return info.createLogFile(path);
+    }
+
+    @Override
+    public String createHeaderLog() {
+        return info.createLogMessage();
+    }
+
 
 }
+
